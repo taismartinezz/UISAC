@@ -2,12 +2,14 @@
 
 ## Plan
 - [x] Review existing Next.js starter structure and project instructions
-- [x] Migrate single-page sections into separate routes
-- [x] Implement Northwestern-style color palette and top navigation
-- [x] Build individual pages: About, Mission and Statement, Calendar, Sponsor Acknowledgment, Tax Filing
+- [x] Replace global theme with tokenized theme.css-style variables and base layer
+- [x] Rebuild navigation and route pages to match provided design references
+- [x] Keep styling Tailwind-first across all pages
+- [x] Update color system to Northwestern purple palette across routes
 - [ ] Run lint verification
 
 ## Review
-- Implemented multi-page architecture with shared header navigation and route-based content pages.
-- Updated visual system to Northwestern-inspired palette with a hero structure matching the provided example style.
-- Verification still blocked in this shell because `npm` is unavailable (`command not found`).
+- Implemented a Tailwind-first redesign across all pages with a shared icon navigation bar and active route states.
+- Applied the provided tokenized theme structure in `globals.css` and aligned page layouts to the reference screenshots.
+- Replaced blue accents with Northwestern purple/lilac shades across navbar, hero, cards, and page accents.
+- Verification remains blocked in this shell because `npm` is unavailable (`command not found`).
