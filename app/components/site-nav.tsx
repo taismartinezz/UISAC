@@ -18,6 +18,7 @@ const navItems: NavItem[] = [
   { href: "/calendar", label: "Calendar", icon: <CalendarIcon /> },
   { href: "/acknowledgment", label: "Acknowledgment", icon: <AwardIcon /> },
   { href: "/tax-filing", label: "Tax Filing", icon: <FileIcon /> },
+  { href: "/discussions", label: "Discussions", icon: <ChatBubbleIcon /> },
 ];
 
 function isActive(pathname: string, href: string): boolean {
@@ -170,6 +171,14 @@ function FileIcon() {
       <path d="M14 2v6h6" />
       <path d="M9 13h6" />
       <path d="M9 17h6" />
+    </IconBase>
+  );
+}
+
+function ChatBubbleIcon() {
+  return (
+    <IconBase>
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </IconBase>
   );
 }
