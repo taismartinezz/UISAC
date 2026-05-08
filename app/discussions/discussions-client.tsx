@@ -108,9 +108,12 @@ export default function DiscussionsClient({
           ),
         );
       } catch (err) {
+        // createQuestion throws with the Supabase error message on insert failure
+        const msg = err instanceof Error ? err.message : String(err);
+        console.error("Supabase insert error:", msg);
+        alert("Failed to post question: " + msg);
+        // roll back optimistic update
         setQuestions((prev) => prev.filter((q) => q.id !== optimistic.id));
-        const msg = err instanceof Error ? err.message : "Failed to post question";
-        console.error("[createQuestion]", msg);
         setSubmitError(msg);
       }
     });
@@ -263,6 +266,14 @@ export default function DiscussionsClient({
             </div>
           </div>
 
+          {/* Error banner */}
+          {submitError && (
+            <div className="mt-6 flex items-center justify-between rounded-2xl bg-red-50 px-5 py-3 text-sm text-red-600">
+              <span>{submitError}</span>
+              <button onClick={() => setSubmitError(null)} className="ml-4 font-bold">✕</button>
+            </div>
+          )}
+
           {/* Questions feed */}
           <div className="mt-8 space-y-4">
             {filtered.length === 0 ? (
@@ -322,11 +333,6 @@ export default function DiscussionsClient({
               rows={5}
               className="mt-5 w-full resize-none rounded-2xl border border-[#d4c7e9] bg-[#f8f5fd] p-4 text-base text-[#2f2147] placeholder:text-[#b0a0cc] focus:outline-none focus:ring-2 focus:ring-[#6f58a8]/40"
             />
-            {submitError && (
-              <p className="mt-4 rounded-xl bg-red-50 px-4 py-2 text-sm text-red-600">
-                {submitError}
-              </p>
-            )}
             <div className="mt-5 flex justify-end gap-3">
               <button
                 onClick={() => {
